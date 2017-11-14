@@ -1,29 +1,57 @@
-module.exports = function (config) {
+/* eslint-disable */
+module.exports = function(config) {
   config.module.rules.push({
     test: /\.(html)$/,
-    use: [{
-        loader: "@skpm/extract-loader",
+    use: [
+      {
+        loader: '@skpm/extract-loader',
       },
       {
-        loader: "html-loader",
+        loader: 'html-loader',
         options: {
-          attrs: [
-            'img:src',
-            'link:href'
-          ],
+          attrs: ['img:src', 'link:href'],
           interpolate: true,
         },
       },
-    ]
-  })
+    ],
+  });
   config.module.rules.push({
     test: /\.(css)$/,
-    use: [{
-        loader: "@skpm/extract-loader",
+    use: [
+      {
+        loader: 'style-loader',
       },
       {
-        loader: "css-loader",
+        loader: 'css-loader',
       },
-    ]
-  })
-}
+    ],
+  });
+  config.module.rules.push({
+    test: /\.(less)$/,
+    use: [
+      {
+        loader: 'style-loader',
+      },
+      {
+        loader: 'css-loader',
+      },
+      {
+        loader: 'less-loader',
+      },
+    ],
+  });
+  config.module.rules.push({
+    test: /\.(png|jpg|gif|svg)$/,
+    loader: 'file-loader',
+    options: {
+      name: '[name].[ext]?[hash]',
+    },
+  });
+  config.module.rules.push({
+    test: /\.vue$/,
+    use: 'vue-loader',
+  });
+  config.resolve = {
+    extensions: ['.js', '.vue', '.json'],
+  };
+};
