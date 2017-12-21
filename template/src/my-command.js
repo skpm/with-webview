@@ -19,9 +19,13 @@ export default function(context) {
     },
     handlers: {
       nativeLog(s) {
-        context.document.showMessage(s);
-        const sketch = context.api();
-        console.log(sketch);
+        try {
+          context.document.showMessage(s);
+          const sketch = context.api();
+          console.log(sketch);
+        } catch (error) {
+          console.error(error.stack);
+        }
       },
     },
   });
