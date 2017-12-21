@@ -10,15 +10,7 @@
 
 ```bash
 $ npm install -g skpm
-$ skpm create my-plugin --template=skpm/with-webview
+$ skpm create my-plugin --template=nichenqin/with-webview-vue
 $ cd my-plugin
 $ npm run watch
-```
-
-### Fork It And Make Your Own
-
-You can fork this repo to create your own boilerplate, and use it with `skpm`:
-
-```bash
-skpm create my-plugin --template=nichenqin/with-webview-vue
 ```
