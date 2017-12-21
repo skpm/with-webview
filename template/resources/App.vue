@@ -49,6 +49,7 @@ export default {
   methods: {
     log() {
       pluginCall('nativeLog', 'From vue.js!');
+      this.msg = window.msg;
     },
   },
 };

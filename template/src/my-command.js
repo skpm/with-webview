@@ -23,6 +23,8 @@ export default function(context) {
           context.document.showMessage(s);
           const sketch = context.api();
           console.log(sketch);
+          const msg = 'From Sketch!';
+          webUI.eval(`window.msg = ${msg}`);
         } catch (error) {
           console.error(error.stack);
         }
