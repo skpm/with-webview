@@ -41,7 +41,7 @@ module.exports = function(config) {
     ],
   });
   config.module.rules.push({
-    test: /\.(png|jpg|gif|svg)$/,
+    test: /\.(png|jpg|gif|svg|sketch)$/,
     loader: 'file-loader',
     options: {
       name: '[name].[ext]?[hash]',
