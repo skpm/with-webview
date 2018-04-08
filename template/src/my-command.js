@@ -1,27 +1,34 @@
-import WebUI from 'sketch-module-web-view'
+import BrowserWindow from 'sketch-module-web-view'
+const UI = require('sketch/ui')
 
 export default function(context) {
-  const webUI = new WebUI(context, require('../resources/webview.html'), {
-    identifier: 'unique.id', // to reuse the UI
-    x: 0,
-    y: 0,
+
+  const options = {
+    identifier: 'unique.id',
     width: 240,
     height: 180,
-    blurredBackground: true,
-    onlyShowCloseButton: true,
-    hideTitleBar: false,
-    shouldKeepAround: true,
-    frameLoadDelegate: { // https://developer.apple.com/reference/webkit/webframeloaddelegate?language=objc
-      'webView:didFinishLoadForFrame:'(webView, webFrame) {
-        context.document.showMessage('UI loaded!')
-      }
-    },
-    handlers: {
-      nativeLog(s) {
-        context.document.showMessage(s)
+    show: false
+  }
 
-        webUI.eval(`setRandomNumber(${Math.random()})`)
-      }
-    }
+  var browserWindow = new BrowserWindow(options)
+
+  // only show the window when the page has loaded
+  browserWindow.once('ready-to-show', () => {
+    browserWindow.show()
   })
+
+  const webContents = browserWindow.webContents
+
+  // print a message when the page loads
+  webContents.on('did-finish-load', () => {
+    UI.message('UI loaded!')
+  })
+
+  // add a handler for a call from web content's javascript
+  webContents.on('nativeLog', (s) => {
+    UI.message(s)
+    webContents.executeJavaScript(`setRandomNumber(${Math.random()})`)
+  })
+
+  browserWindow.loadURL(require('../resources/webview.html'))
 }
