@@ -25,6 +25,6 @@
     "resources/**/*.js"
   ],
   "dependencies": {
-    "sketch-module-web-view": "^1.1.0"
+    "sketch-module-web-view": "^1.1.3"
   }
 }
