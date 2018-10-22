@@ -2,14 +2,24 @@
 
 _This plugin was created using `skpm`. For a detailed explanation on how things work, checkout the [skpm Readme](https://github.com/skpm/skpm/blob/master/README.md)._
 
-## CLI Commands
+## Usage
 
-``` bash
-# build with hot reload
-npm run watch
+Install the dependencies
 
-# build for production
+```bash
+npm install
+```
+
+Once the installation is done, you can run some commands inside the project folder:
+
+```bash
 npm run build
+```
+
+To watch for changes:
+
+```bash
+npm run watch
 ```
 
 ## Custom Configuration
@@ -32,9 +42,9 @@ To customize webpack create `webpack.skpm.config.js` file which exports function
  * Supports asynchronous changes when promise is returned.
  *
  * @param {object} config - original webpack config.
- * @param {boolean} isPluginCommand - wether the config is for a plugin command or a resource
+ * @param {boolean} isPluginCommand - whether the config is for a plugin command or a resource
  **/
-module.exports = function (config, isPluginCommand) {
+module.exports = function(config, isPluginCommand) {
   /** you can change config here **/
 }
 ```
@@ -42,8 +52,9 @@ module.exports = function (config, isPluginCommand) {
 ## Debugging
 
 To view the output of your `console.log`, you have a few different options:
+
+* Use the [`sketch-dev-tools`](https://github.com/skpm/sketch-dev-tools)
 * Open `Console.app` and look for the sketch logs
-* Use Safari's web inspector to debug your plugin's javascript context
 * Look at the `~/Library/Logs/com.bohemiancoding.sketch3/Plugin Output.log` file
 
 Skpm provides a convenient way to do the latter:
@@ -54,3 +65,23 @@ skpm log
 
 The `-f` option causes `skpm log` to not stop when the end of logs is reached, but rather to wait for additional data to be appended to the input
 
+## Publishing your plugin
+
+```bash
+skpm publish <bump>
+```
+
+(where `bump` can be `patch`, `minor` or `major`)
+
+`skpm publish` will create a new release on your GitHub repository and create an appcast file in order for Sketch users to be notified of the update.
+
+You will need to specify a `repository` in the `package.json`:
+
+```diff
+...
++ "repository" : {
++   "type": "git",
++   "url": "git+https://github.com/ORG/NAME.git"
++  }
+...
+```
