@@ -2,6 +2,7 @@
 plugin.sketchplugin/Contents/Sketch
 plugin.sketchplugin/Contents/Resources/_webpack_resources
 plugin.sketchplugin/Contents/Resources/webview.js
+plugin.sketchplugin/Contents/Resources/webview.js.map
 
 # npm
 node_modules
