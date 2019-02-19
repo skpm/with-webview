@@ -1,13 +1,16 @@
 {
-  "name": "foobar",
+  "name": "{{ slug }}",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=3.0"
   },
   "skpm": {
-    "name": "foobar",
+    "name": "{{ name }}",
     "manifest": "src/manifest.json",
-    "main": "plugin.sketchplugin"
+    "main": "{{ slug }}.sketchplugin",
+    "assets": [
+      "assets/**/*"
+    ]
   },
   "scripts": {
     "build": "skpm-build",
@@ -16,7 +19,7 @@
     "postinstall": "npm run build && skpm-link"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.5.10",
+    "@skpm/builder": "^0.5.11",
     "@skpm/extract-loader": "^2.0.2",
     "css-loader": "^1.0.0",
     "html-loader": "^0.5.1"
@@ -25,6 +28,6 @@
     "resources/**/*.js"
   ],
   "dependencies": {
-    "sketch-module-web-view": "^2.0.0"
+    "sketch-module-web-view": "^2.1.14"
   }
 }
