@@ -1,7 +1,7 @@
 import BrowserWindow from 'sketch-module-web-view'
-const UI = require('sketch/ui')
+import UI from 'sketch/ui'
 
-export default function() {
+export default = () => {
   const options = {
     identifier: 'unique.id',
     width: 240,
@@ -9,7 +9,7 @@ export default function() {
     show: false
   }
 
-  var browserWindow = new BrowserWindow(options)
+  const browserWindow = new BrowserWindow(options)
 
   // only show the window when the page has loaded
   browserWindow.once('ready-to-show', () => {
@@ -24,7 +24,7 @@ export default function() {
   })
 
   // add a handler for a call from web content's javascript
-  webContents.on('nativeLog', (s) => {
+  webContents.on('nativeLog', s => {
     UI.message(s)
     webContents
       .executeJavaScript(`setRandomNumber(${Math.random()})`)
