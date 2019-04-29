@@ -1,9 +1,11 @@
 import BrowserWindow from 'sketch-module-web-view'
 import UI from 'sketch/ui'
 
-export default = () => {
+const webviewIdentifier = '{{ slug }}.webview'
+
+export default function () {
   const options = {
-    identifier: 'unique.id',
+    identifier: webviewIdentifier,
     width: 240,
     height: 180,
     show: false
@@ -11,7 +13,7 @@ export default = () => {
 
   const browserWindow = new BrowserWindow(options)
 
-  // only show the window when the page has loaded
+  // only show the window when the page has loaded to avoid a white flash
   browserWindow.once('ready-to-show', () => {
     browserWindow.show()
   })
@@ -32,4 +34,13 @@ export default = () => {
   })
 
   browserWindow.loadURL(require('../resources/webview.html'))
+}
+
+// When the plugin is shutdown by Sketch (for example when the user disable the plugin)
+// we need to close the webview if it's open
+export function onShutdown() {
+  const existingWebview = getWebview(webviewIdentifier)
+  if (existingWebview) {
+    existingWebview.close()
+  }
 }

@@ -10,7 +10,8 @@
     "main": "{{ slug }}.sketchplugin",
     "assets": [
       "assets/**/*"
-    ]
+    ],
+    "sketch-assets-file": "sketch-assets/icons.sketch"
   },
   "scripts": {
     "build": "skpm-build",

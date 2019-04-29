@@ -4,12 +4,18 @@
   "commands": [
     {
       "name": "my-command",
-      "identifier": "my-command-identifier",
-      "script": "./my-command.js"
+      "identifier": "{{ slug }}.my-command-identifier",
+      "script": "./my-command.js",
+      "handlers": {
+        "run": "onRun",
+        "actions": {
+          "Shutdown": "onShutdown"
+        }
+      }
     }
   ],
   "menu": {
-    "title": "foobar",
-    "items": ["my-command-identifier"]
+    "title": "{{ name }}",
+    "items": ["{{ slug }}.my-command-identifier"]
   }
 }
