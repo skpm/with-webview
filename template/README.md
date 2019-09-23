@@ -50,11 +50,26 @@ To customize webpack create `webpack.skpm.config.js` file which exports function
  * Supports asynchronous changes when promise is returned.
  *
  * @param {object} config - original webpack config.
- * @param {boolean} isPluginCommand - whether the config is for a plugin command or a resource
+ * @param {object} entry - entry property from webpack config
+ * @param {boolean} entry.isPluginCommand - whether the config is for a plugin command or a resource
  **/
-module.exports = function(config, isPluginCommand) {
+module.exports = function(config, entry) {
   /** you can change config here **/
 };
+```
+
+To use the polyfills or the mocks for certain Node.js globals and modules use the `node` property.
+
+Visit [the official documention](https://webpack.js.org/configuration/node/) for available options.
+
+```js
+if(entry.isPluginCommand ){
+  config.node = {
+    setImmediate: false
+  }
+} else {
+  config.node = false;
+}
 ```
 
 ### Debugging
