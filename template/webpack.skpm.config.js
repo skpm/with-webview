@@ -1,4 +1,7 @@
-module.exports = function (config) {
+module.exports = function (config, entry) {
+  config.node = entry.isPluginCommand ? false : {
+    setImmediate: false
+  };
   config.module.rules.push({
     test: /\.(html)$/,
     use: [{
