@@ -8,7 +8,7 @@ document.getElementById('button').addEventListener('click', () => {
   window.postMessage('nativeLog', 'Called from the webview')
 })
 
-// call the wevbiew from the plugin
+// call the webview from the plugin
 window.setRandomNumber = (randomNumber) => {
   document.getElementById('answer').innerHTML = 'Random number from the plugin: ' + randomNumber
 }
